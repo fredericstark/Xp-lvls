@@ -2,42 +2,41 @@ using UnityEngine;
 
 public class NPCinteraction : MonoBehaviour
 {
-    public GameObject interactText;   // "Press E to talk"
-    public GameObject dialogueText;   // "Hello there!"
 
-    private bool playerInRange = false;
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        interactText.SetActive(false);
-        dialogueText.SetActive(false);
+
     }
+
+    private bool playerInRange = false;
 
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            dialogueText.SetActive(true);
-            interactText.SetActive(false);
+            Interact();
         }
     }
-
+    void Interact()
+    {
+        Debug.Log("NPC: Hello there!");
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            interactText.SetActive(true);
+            Debug.Log("Press E to talk");
         }
-    }
 
+    }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            interactText.SetActive(false);
-            dialogueText.SetActive(false);
         }
     }
 }
