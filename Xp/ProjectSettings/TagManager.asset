@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Deadly
   - checkpoint
+  - MiniGameTrigger
+  - Enemy
   layers:
   - Default
   - TransparentFX
