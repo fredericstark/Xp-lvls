@@ -46,16 +46,6 @@ public class Player1Controller : MonoBehaviour
         {
             move = 1f;
         }
-       
-        if (Input.GetKey(leftKey) && Input.GetKey(rightKey))
-        {
-            _animator.Play("Walk");
-        }
-        else
-        {
-            _animator.Play("Idle");
-        }
-
 
 
         rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
