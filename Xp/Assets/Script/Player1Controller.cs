@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Player1Controller : MonoBehaviour
 {
+
     [Header("Movement Settings")]
     public float speed = 5f;
     public float jumpForce = 10f; // small jump
@@ -10,6 +11,8 @@ public class Player1Controller : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
+
+    [SerializeField] private Animator _animator;
 
     [Header("Controls")]
     public KeyCode leftKey = KeyCode.A;
@@ -23,6 +26,7 @@ public class Player1Controller : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
     }
 
@@ -33,8 +37,16 @@ public class Player1Controller : MonoBehaviour
 
         // Horizontal movement
         float move = 0f;
-        if (Input.GetKey(leftKey)) move = -1f;
-        if (Input.GetKey(rightKey)) move = 1f;
+        if (Input.GetKey(leftKey))
+        {
+            move = -1f;
+        }
+            
+        if (Input.GetKey(rightKey))
+        {
+            move = 1f;
+        }
+
 
         rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
 
