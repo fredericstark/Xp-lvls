@@ -41,7 +41,7 @@ public class Player1Controller : MonoBehaviour
         {
             move = -1f;
         }
-            
+
         if (Input.GetKey(rightKey))
         {
             move = 1f;
