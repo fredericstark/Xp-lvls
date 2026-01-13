@@ -6,7 +6,7 @@ public class PlayerRespawn : MonoBehaviour
 
     void Start()
     {
-        // Set initial respawn point to starting position
+
         respawnPoint = transform.position;
     }
 
@@ -18,9 +18,9 @@ public class PlayerRespawn : MonoBehaviour
 
     public void Die()
     {
-        // Respawn at last checkpoint
+
         transform.position = respawnPoint;
-        // Optional: reset velocity if using Rigidbody2D
+
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {

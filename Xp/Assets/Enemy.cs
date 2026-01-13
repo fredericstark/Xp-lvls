@@ -3,9 +3,9 @@
 public class SimpleEnemy : MonoBehaviour
 {
     public float speed = 2f;
-    public float bounceForce = 10f; // how high the player bounces
+    public float bounceForce = 10f;
 
-    private int direction = -1; // -1 = left, 1 = right
+    private int direction = -1;
     private Rigidbody2D rb;
 
     void Start()
@@ -20,24 +20,24 @@ public class SimpleEnemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Flip when hitting walls
+
         if (collision.gameObject.CompareTag("Wall"))
         {
             direction *= -1;
             Flip();
         }
 
-        // Player interaction
+
         if (collision.gameObject.CompareTag("Player"))
         {
             Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
 
-            // Player jumped on top → destroy enemy and bounce
+
             if (collision.contacts[0].normal.y < -0.5f)
             {
                 Destroy(gameObject);
 
-                // Bounce the player
+
                 if (playerRb != null)
                 {
                     playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, bounceForce);
@@ -45,7 +45,7 @@ public class SimpleEnemy : MonoBehaviour
             }
             else
             {
-                // Player hit from the side → call Die()
+
                 PlayerRespawn playerRespawn = collision.gameObject.GetComponent<PlayerRespawn>();
                 if (playerRespawn != null)
                 {
