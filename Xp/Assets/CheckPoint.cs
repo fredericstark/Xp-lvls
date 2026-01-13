@@ -6,7 +6,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Save player's respawn position
+
             PlayerRespawn respawn = other.GetComponent<PlayerRespawn>();
             if (respawn != null)
             {
