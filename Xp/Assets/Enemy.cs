@@ -1,48 +1,62 @@
 ﻿using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class SimpleEnemy : MonoBehaviour
 {
+    public float speed = 2f;
     public float bounceForce = 10f; // how high the player bounces
-    public GameObject deathEffect;  // optional particle effect
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private int direction = -1; // -1 = left, 1 = right
+    private Rigidbody2D rb;
+
+    void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void FixedUpdate()
+    {
+        rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Flip when hitting walls
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            direction *= -1;
+            Flip();
+        }
+
+        // Player interaction
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Get contact points to see if player hit the top of enemy
-            foreach (ContactPoint2D contact in collision.contacts)
-            {
-                // Check if contact point is above enemy center
-                if (contact.point.y > transform.position.y)
-                {
-                    // Player hit enemy on top → enemy dies
-                    Die();
+            Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
 
-                    // Bounce player up
-                    Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
-                    if (rb != null)
-                    {
-                        rb.linearVelocity = new Vector2(rb.linearVelocity.x, bounceForce);
-                    }
-                    return;
+            // Player jumped on top → destroy enemy and bounce
+            if (collision.contacts[0].normal.y < -0.5f)
+            {
+                Destroy(gameObject);
+
+                // Bounce the player
+                if (playerRb != null)
+                {
+                    playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, bounceForce);
                 }
             }
-
-            // Player touched enemy from the side → player dies or takes damage
-            PlayerRespawn player = collision.gameObject.GetComponent<PlayerRespawn>();
-            if (player != null)
+            else
             {
-                player.Die(); // Or call a damage method
+                // Player hit from the side → call Die()
+                PlayerRespawn playerRespawn = collision.gameObject.GetComponent<PlayerRespawn>();
+                if (playerRespawn != null)
+                {
+                    playerRespawn.Die();
+                }
             }
         }
     }
 
-    void Die()
+    void Flip()
     {
-        // Optional death effect
-        if (deathEffect != null)
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
-
-        Destroy(gameObject);
+        transform.localScale = new Vector3(direction, 1, 1);
     }
 }
