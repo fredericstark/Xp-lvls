@@ -8,6 +8,9 @@ TagManager:
   - checkpoint
   - MiniGameTrigger
   - Enemy
+  - Wall
+  - Ground
+  - Bouncy
   layers:
   - Default
   - TransparentFX
