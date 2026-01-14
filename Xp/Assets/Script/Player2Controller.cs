@@ -2,27 +2,20 @@ using UnityEngine;
 
 public class Player2Controller : MonoBehaviour
 {
-    [Header("Movement Settings")]
     public float speed = 5f;
-    public float jumpForce = 10f; // higher jump
-
-    [Header("Ground Check")]
-    public Transform groundCheck;
-    public float groundCheckRadius = 0.2f;
+    public float jumpForce = 10f;
+    public int maxJumps = 2;
     public LayerMask groundLayer;
 
-    [Header("Controls")]
     public KeyCode leftKey = KeyCode.LeftArrow;
     public KeyCode rightKey = KeyCode.RightArrow;
     public KeyCode jumpKey = KeyCode.UpArrow;
 
-    [Header("Jump Settings")]
-    public int maxJumps = 2; // double jump
-
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
-    private bool isGrounded;
+    private float moveInput;
     private int jumpsLeft;
+    private bool jumpPressed;
 
     void Awake()
     {
@@ -33,26 +26,34 @@ public class Player2Controller : MonoBehaviour
 
     void Update()
     {
-        // Ground check
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        if (isGrounded) jumpsLeft = maxJumps;
+        moveInput = 0f;
+        if (Input.GetKey(leftKey)) moveInput = -1f;
+        if (Input.GetKey(rightKey)) moveInput = 1f;
 
-        // Horizontal movement
-        float move = 0f;
-        if (Input.GetKey(leftKey)) move = -1f;
-        if (Input.GetKey(rightKey)) move = 1f;
-
-        rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
-
-        // Flip sprite
-        if (move < 0) sprite.flipX = true;
-        else if (move > 0) sprite.flipX = false;
-
-        // Jump (double)
         if (Input.GetKeyDown(jumpKey) && jumpsLeft > 0)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            jumpPressed = true;
             jumpsLeft--;
         }
+
+        if (moveInput < 0) sprite.flipX = true;
+        else if (moveInput > 0) sprite.flipX = false;
+    }
+
+    void FixedUpdate()
+    {
+        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+
+        if (jumpPressed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpPressed = false;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (((1 << collision.gameObject.layer) & groundLayer) != 0)
+            jumpsLeft = maxJumps;
     }
 }
