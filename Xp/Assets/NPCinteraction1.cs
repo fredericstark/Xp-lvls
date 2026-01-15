@@ -2,41 +2,42 @@ using UnityEngine;
 
 public class NPCinteraction : MonoBehaviour
 {
+    [SerializeField] private GameObject prologueUI;
+    [SerializeField] private GameObject dialogueUI;
 
-
+    private bool playerInRange = false;
 
     void Start()
     {
-
+        prologueUI.SetActive(false);
+        dialogueUI.SetActive(false);
     }
-
-    private bool playerInRange = false;
 
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            Interact();
+            dialogueUI.SetActive(true);
+            prologueUI.SetActive(false);
         }
     }
-    void Interact()
-    {
-        Debug.Log("NPC: Hello there!");
-    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            Debug.Log("Press E to talk");
+            prologueUI.SetActive(true);
         }
-
     }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            prologueUI.SetActive(false);
+            dialogueUI.SetActive(false);
         }
     }
 }

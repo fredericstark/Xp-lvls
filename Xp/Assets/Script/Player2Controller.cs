@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Player2Controller : MonoBehaviour
 {
+    public bool isCarried;
     public float speed = 5f;
     public float jumpForce = 10f;
     public int maxJumps = 2;
@@ -26,6 +27,7 @@ public class Player2Controller : MonoBehaviour
 
     void Update()
     {
+        if (isCarried) return;
         moveInput = 0f;
         if (Input.GetKey(leftKey)) moveInput = -1f;
         if (Input.GetKey(rightKey)) moveInput = 1f;
