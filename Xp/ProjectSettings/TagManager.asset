@@ -15,7 +15,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Layer 3
   - Water
   - UI
   - 
@@ -51,5 +51,9 @@ TagManager:
   - name: Ground
     uniqueID: 3592210827
     locked: 0
+  - name: Back
+    uniqueID: 400031941
+    locked: 0
   m_RenderingLayers:
   - Default
+  - Layer 1

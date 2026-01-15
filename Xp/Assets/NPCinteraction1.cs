@@ -4,6 +4,7 @@ public class NPCinteraction : MonoBehaviour
 {
     [SerializeField] private GameObject prologueUI;
     [SerializeField] private GameObject dialogueUI;
+    [SerializeField] private GameObject dialogueUI2;
 
     private bool playerInRange = false;
 
@@ -11,6 +12,7 @@ public class NPCinteraction : MonoBehaviour
     {
         prologueUI.SetActive(false);
         dialogueUI.SetActive(false);
+        dialogueUI2.SetActive(false);
     }
 
     void Update()
@@ -19,6 +21,7 @@ public class NPCinteraction : MonoBehaviour
         {
             dialogueUI.SetActive(true);
             prologueUI.SetActive(false);
+            dialogueUI2.SetActive(false);
         }
     }
 
@@ -28,6 +31,7 @@ public class NPCinteraction : MonoBehaviour
         {
             playerInRange = true;
             prologueUI.SetActive(true);
+            dialogueUI2.SetActive(true);
         }
     }
 
@@ -38,6 +42,7 @@ public class NPCinteraction : MonoBehaviour
             playerInRange = false;
             prologueUI.SetActive(false);
             dialogueUI.SetActive(false);
+            dialogueUI2.SetActive(false);
         }
     }
 }
