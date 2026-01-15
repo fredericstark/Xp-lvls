@@ -6,24 +6,22 @@ public class ParallaxLayer : MonoBehaviour
     public float parallaxStrength = 0.5f;
 
     private Transform cameraTransform;
-    private Vector3 previousCameraPosition;
+    private Vector3 startPosition;
 
     void Start()
     {
         cameraTransform = Camera.main.transform;
-        previousCameraPosition = cameraTransform.position;
+        startPosition = transform.position;
     }
 
     void LateUpdate()
     {
-        Vector3 delta = cameraTransform.position - previousCameraPosition;
+        Vector3 cameraPos = cameraTransform.position;
 
-        transform.position += new Vector3(
-            delta.x * parallaxStrength,
-            delta.y * parallaxStrength,
-            0f
+        transform.position = new Vector3(
+            startPosition.x + cameraPos.x * parallaxStrength,
+            startPosition.y + cameraPos.y * parallaxStrength,
+            startPosition.z
         );
-
-        previousCameraPosition = cameraTransform.position;
     }
 }
