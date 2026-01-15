@@ -2233,6 +2233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee84f1db64669a449f0ae00e323e04d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player2Controller
+  isCarried: 0
   speed: 14
   jumpForce: 20
   maxJumps: 2
