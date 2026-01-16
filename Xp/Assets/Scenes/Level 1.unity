@@ -2081,8 +2081,8 @@ Transform:
   m_GameObject: {fileID: 514945789}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.188, y: -28.1, z: 0}
-  m_LocalScale: {x: 106.97, y: 2.7480001, z: 1}
+  m_LocalPosition: {x: -0.188, y: -27.8688, z: 0}
+  m_LocalScale: {x: 106.97, y: 3.210214, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2099,8 +2099,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef4c66961e01d748af736257ca7f4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KillPlayer
-  Player: {fileID: 333677642}
-  Player2: {fileID: 728354586}
 --- !u!61 &514945796
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2667,7 +2665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: e378984cbb5855a409b25e2cf11e1720, type: 3}
       propertyPath: m_LocalScale.y
-      value: 133.86
+      value: 14.978934
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: e378984cbb5855a409b25e2cf11e1720, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2675,7 +2673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: e378984cbb5855a409b25e2cf11e1720, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -43.4
+      value: -26.7568
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: e378984cbb5855a409b25e2cf11e1720, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2713,9 +2711,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: e378984cbb5855a409b25e2cf11e1720, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1634782389}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: e378984cbb5855a409b25e2cf11e1720, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1634782388}
@@ -3393,20 +3388,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.16, y: 0.14}
   m_EdgeRadius: 0
---- !u!114 &1634782389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634782387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ef4c66961e01d748af736257ca7f4c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KillPlayer
-  Player: {fileID: 728354586}
-  Player2: {fileID: 333677642}
 --- !u!1 &1994984078
 GameObject:
   m_ObjectHideFlags: 0
